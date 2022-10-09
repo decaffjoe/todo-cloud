@@ -1,0 +1,10 @@
+# Terraform
+*.info
+*.backup
+.terraform/
+terraform.tfvars
+terraform.tfstate*
+
+# Editors
+.idea
+.vscode

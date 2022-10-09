@@ -1,0 +1,6 @@
+# Build artifacts
+go-todo-cloud
+
+# Editors
+.idea
+.vscode
