@@ -13,10 +13,6 @@ import (
 )
 
 func main() {
-	// TODO - meta cli to create config file (a) user args into tf vars and this program, (b) bucket details into static site
-	// TODO - script to run vim todo.md then run this program on exit
-	// TODO - create static site that views bucket address, decrypts object and renders markdown
-
 	// read config file
 	cfg := lib.InitConfig()
 

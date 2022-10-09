@@ -14,10 +14,6 @@ struct TodoConfig {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // TODO - meta cli to create config file (a) user args into tf vars and this program, (b) bucket details into static site
-    // TODO - script to run vim todo.md then run this program on exit
-    // TODO - create static site that views bucket address, decrypts object and renders markdown
-
     // Debug logging
     let subscriber = tracing_subscriber::FmtSubscriber::builder()
         .with_max_level(Level::DEBUG)
