@@ -16,7 +16,7 @@ struct TodoConfig {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Debug logging
     let subscriber = tracing_subscriber::FmtSubscriber::builder()
-        .with_max_level(Level::DEBUG)
+        .with_max_level(Level::INFO)
         .finish();
     tracing::subscriber::set_global_default(subscriber)?;
 
@@ -43,7 +43,7 @@ async fn upload_to_gcp(
     let google_rest_client = gcloud_sdk::GoogleRestApi::new().await?;
 
     // TODO - use explicit gcloud authorization via credentials file
-    let response = gcloud_sdk::google_rest_apis::storage_v1::objects_api::storage_objects_insert_ext_bytes(
+    let r = gcloud_sdk::google_rest_apis::storage_v1::objects_api::storage_objects_insert_ext_bytes(
             &google_rest_client.create_google_storage_v1_config().await?,
             gcloud_sdk::google_rest_apis::storage_v1::objects_api::StoragePeriodObjectsPeriodInsertParams {
                 bucket: bucket_name,
@@ -52,9 +52,12 @@ async fn upload_to_gcp(
             },
             None,
             encrypted_file.as_bytes().to_vec()
-        ).await?;
-
-    println!("{:?}", response);
-
-    Ok(())
+        ).await;
+    match r {
+        Ok(_) => {
+            println!("Successfully updated cloud");
+            Ok(())
+        }
+        Err(e) => Err(Box::new(e)),
+    }
 }

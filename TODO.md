@@ -5,4 +5,3 @@
   - bucket details into static site
 - script to run `vim todo.md` then run rs/go program on exit
 - create static site that views bucket address, decrypts object and renders markdown
-- terraform delete script

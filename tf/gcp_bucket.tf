@@ -24,3 +24,4 @@ resource "google_storage_bucket_iam_member" "todo_bucket_member" {
   role   = "roles/storage.legacyObjectReader"
   member = "allUsers"
 }
+
